@@ -1,0 +1,764 @@
+/* src/App.css */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Inter:wght@400;500;600&display=swap');
+
+/* --- 1. Global Reset & Dark Theme --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: #020617;
+  /* Deep Void Blue */
+  color: #fff;
+  /* Subtle mesh gradient background */
+  background-image:
+    radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(225, 39%, 30%, 1) 0, transparent 50%);
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+/* --- 2. The "Floating Gaming Layer" (The Fun Part) --- */
+.floating-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  /* Behind the glass */
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.float-item {
+  position: absolute;
+  opacity: 0.6;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+  font-size: 3rem;
+  /* For Emojis */
+}
+
+/* Specific Items positions & Animations */
+.i1 {
+  top: 10%;
+  left: 10%;
+  animation: floatY 8s ease-in-out infinite;
+  font-size: 4rem;
+}
+
+.i2 {
+  top: 70%;
+  right: 15%;
+  animation: floatY 12s ease-in-out infinite reverse;
+  font-size: 3rem;
+}
+
+.i3 {
+  top: 40%;
+  left: 80%;
+  animation: floatX 20s linear infinite;
+  font-size: 2.5rem;
+}
+
+.i4 {
+  /* Large Avatar */
+  width: 120px;
+  bottom: 10%;
+  left: 20%;
+  animation: floatCircle 25s linear infinite;
+  opacity: 0.4;
+}
+
+.i5 {
+  /* Another Avatar */
+  width: 80px;
+  top: 15%;
+  right: 30%;
+  animation: floatY 15s ease-in-out infinite;
+  opacity: 0.5;
+}
+
+@keyframes floatY {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-30px);
+  }
+}
+
+@keyframes floatX {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateX(-50px) rotate(10deg);
+  }
+
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+@keyframes floatCircle {
+  0% {
+    transform: rotate(0deg) translateX(50px) rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg) translateX(50px) rotate(-360deg);
+  }
+}
+
+/* --- 3. Auth Screen (Glass Card) --- */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+.glass-card {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3rem;
+  width: 400px;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.glass-card h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #fff, #94a3b8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  color: #94a3b8;
+  margin-bottom: 30px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #6366f1;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.glow-btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+.glow-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+}
+
+.switch-auth {
+  margin-top: 20px;
+  color: #6366f1;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* --- 4. Main Dashboard (Full Screen Glass Slab) --- */
+.main-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  /* Gap from edge */
+  position: relative;
+  z-index: 5;
+}
+
+.glass-dashboard {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: 1600px;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+
+  /* --- KEY FIXES --- */
+  align-items: stretch;
+  /* Force Left & Right to match height */
+  overflow: hidden;
+  /* Clip any overflowing children */
+}
+
+/* --- 5. Sidebar --- */
+.sidebar {
+  width: 320px;
+  background: rgba(0, 0, 0, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+
+  /* --- KEY FIX --- */
+  flex-shrink: 0;
+  /* Never let the sidebar shrink */
+}
+
+/* Update Sidebar Header to match Chat Header */
+.sidebar h3 {
+  height: 80px;
+  /* Match the .header height */
+  display: flex;
+  align-items: center;
+  padding-left: 25px;
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  color: white;
+  letter-spacing: -0.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  /* Add matching border */
+}
+
+.users-scroller {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 15px;
+}
+
+.user-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  margin-bottom: 5px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+  border: 1px solid transparent;
+}
+
+.user-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.user-item.active {
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.avatar-wrapper {
+  position: relative;
+  margin-right: 15px;
+}
+
+.avatar-wrapper img {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: #1e293b;
+}
+
+.online-dot {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 14px;
+  height: 14px;
+  background: #22c55e;
+  border: 3px solid #0f172a;
+  border-radius: 50%;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.username {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #e2e8f0;
+}
+
+.status-text {
+  font-size: 0.75rem;
+  color: #22c55e;
+}
+
+.status-text.off {
+  color: #64748b;
+}
+
+.unread-badge {
+  background: #ef4444;
+  color: white;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 0 6px;
+}
+
+.sidebar-footer {
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logout-btn {
+  width: 100%;
+  padding: 12px;
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.logout-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+/* --- 6. Chat Area --- */
+.chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  /* --- KEY FIXES --- */
+  height: 100%;
+  /* Fill the height exactly */
+  overflow: hidden;
+  /* Stop expanding past the screen */
+  min-width: 0;
+  /* Flexbox safety fix */
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #94a3b8;
+}
+
+.hero-avatar {
+  width: 150px;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+/* Re-style existing Chat Component Children */
+.header {
+  height: 80px;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Add this to src/App.css */
+.header-info {
+  display: flex;
+  flex-direction: column;
+  /* Stacks Name on top of Status */
+  justify-content: center;
+}
+
+.header-name {
+  line-height: 1.2;
+  /* Tighter spacing */
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Add this to src/App.css */
+
+.chat-window {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  /* CRITICAL: Force it to fill the parent */
+  width: 100%;
+}
+
+.chat-window .header {
+  height: 80px;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.1);
+
+  /* --- KEY FIX --- */
+  flex-shrink: 0;
+  /* Never shrink */
+}
+
+.avatar-header {
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+  margin-right: 15px;
+}
+
+/* Messages */
+.messages-body {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  /* --- THE MAGIC FIX --- */
+  flex-grow: 1;
+  /* Was flex-grow: 1 */
+  height: auto;
+  /* CHANGE FROM height: 0 TO height: auto */
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.message {
+  max-width: 65%;
+  padding: 14px 20px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  position: relative;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message.sent {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+  border-radius: 18px 18px 4px 18px;
+  box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+}
+
+.message.received {
+  align-self: flex-start;
+  background: rgba(30, 41, 59, 0.8);
+  color: #e2e8f0;
+  border-radius: 18px 18px 18px 4px;
+}
+
+.message-time {
+  font-size: 0.7rem;
+  opacity: 0.6;
+  text-align: right;
+  margin-top: 5px;
+  display: block;
+}
+
+/* Footer */
+.chat-footer {
+  padding: 20px 30px;
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  gap: 15px;
+  align-items: center;
+
+  /* --- KEY FIX --- */
+  flex-shrink: 0;
+  /* Never shrink */
+}
+
+.chat-footer input {
+  flex: 1;
+  padding: 16px 24px;
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  color: white;
+}
+
+.chat-footer input:focus {
+  outline: none;
+  border-color: #8b5cf6;
+}
+
+.chat-footer button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #6366f1;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+
+.chat-footer button:hover {
+  transform: scale(1.1);
+}
+
+.chat-footer button.icon-btn {
+  background: transparent;
+  color: #94a3b8;
+}
+
+.chat-footer button.icon-btn:hover {
+  color: white;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+
+/* --- THEME TOGGLE BUTTON --- */
+.sidebar-footer {
+  display: flex;
+  gap: 10px;
+}
+
+.theme-btn {
+  width: 50px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: 0.2s;
+}
+
+.theme-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* =========================================
+   ☀️ LIGHT MODE OVERRIDES ☀️
+   ========================================= */
+
+body.light-mode {
+  background-color: #f0f9ff;
+  /* Light Sky Blue */
+  color: #1e293b;
+  /* Dark Slate Text */
+
+  /* Lighter Aurora */
+  background-image:
+    radial-gradient(at 0% 0%, hsla(210, 100%, 96%, 1) 0, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(280, 100%, 96%, 1) 0, transparent 50%);
+}
+
+/* 1. Main Dashboard (White Glass) */
+body.light-mode .glass-dashboard {
+  background: rgba(255, 255, 255, 0.75);
+  /* Whiteish Glass */
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 25px 50px -12px rgba(100, 116, 139, 0.25);
+  /* Softer Shadow */
+}
+
+/* 2. Sidebar (Light Grey) */
+body.light-mode .sidebar {
+  background: rgba(241, 245, 249, 0.6);
+  /* Very light grey */
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .sidebar h3 {
+  color: #334155;
+  /* Dark Header */
+}
+
+body.light-mode .user-item {
+  color: #64748b;
+}
+
+body.light-mode .user-item:hover {
+  background: rgba(0, 0, 0, 0.03);
+  color: #0f172a;
+}
+
+body.light-mode .user-item.active {
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  color: #4f46e5;
+}
+
+body.light-mode .username {
+  color: #334155;
+}
+
+/* 3. Chat Area */
+body.light-mode .header {
+  background: rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .header-name {
+  color: #0f172a;
+}
+
+body.light-mode .chat-footer {
+  background: rgba(255, 255, 255, 0.4);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .chat-footer input {
+  background: #ffffff;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+body.light-mode .chat-footer button.icon-btn {
+  color: #94a3b8;
+}
+
+body.light-mode .chat-footer button.icon-btn:hover {
+  color: #6366f1;
+}
+
+/* 4. Messages */
+body.light-mode .message.received {
+  background: #ffffff;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .message.sent {
+  /* Make the sent bubble slightly brighter in light mode */
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.25);
+}
+
+body.light-mode .message-time {
+  opacity: 0.8;
+  color: inherit;
+}
+
+/* 5. Theme Button in Light Mode */
+body.light-mode .theme-btn {
+  background: white;
+  border-color: #cbd5e1;
+  color: #333;
+}
+
+body.light-mode .theme-btn:hover {
+  background: #f1f5f9;
+}
+
+
+
+/* --- Chat Specific Floating Background --- */
+
+/* 1. Make sure the layer stays behind the text */
+.chat-area .floating-layer.chat-bg {
+  z-index: 0;
+  /* Sit at the back of the chat box */
+  opacity: 0.4;
+  /* Subtle but visible */
+}
+
+/* 2. Ensure Messages sit ON TOP of the floating icons */
+.messages-body {
+  z-index: 1;
+  /* Bring text to front */
+  position: relative;
+}
+
+.chat-footer {
+  z-index: 2;
+  /* Footer on top */
+  position: relative;
+}
+
+.header {
+  z-index: 2;
+  /* Header on top */
+  position: relative;
+}
+
+/* 3. (Optional) Make the Main Dashboard Glass clearer */
+/* Find your .glass-dashboard rule and lower the opacity from 0.75 to 0.6 if you want even more visibility */
+.glass-dashboard {
+  /* ... existing styles ... */
+  background: rgba(15, 23, 42, 0.60);
+  /* Made slightly more transparent */
+}
