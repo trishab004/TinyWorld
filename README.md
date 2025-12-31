@@ -1,7 +1,6 @@
 
 # TinyWorld 🌍
 
-![TinyWorld Banner](https://via.placeholder.com/1000x300?text=TinyWorld+Chat+App) 
 **TinyWorld** is a full-stack real-time chat application designed with a focus on **User Experience** and **Visuals**. It combines professional-grade security with a playful, "gaming-inspired" aesthetic featuring glassmorphism, neon glows, and floating 3D background elements.
 
 ## 🚀 Features
@@ -59,11 +58,11 @@ npm run dev
 
 ### 📸 Screenshots
 
-| *<img width="1919" height="1027" alt="Screenshot 2025-12-31 222035" src="https://github.com/user-attachments/assets/d2fadbbe-c52e-4cbf-b9f4-62f25f0c31bc" />* |
+*<img width="1919" height="1027" alt="Screenshot 2025-12-31 222035" src="https://github.com/user-attachments/assets/d2fadbbe-c52e-4cbf-b9f4-62f25f0c31bc" />*
 
-| *<img width="1919" height="1023" alt="Screenshot 2025-12-31 222053" src="https://github.com/user-attachments/assets/7365e75b-929f-435c-981d-be615977f642" />* |
+*<img width="1919" height="1023" alt="Screenshot 2025-12-31 222053" src="https://github.com/user-attachments/assets/7365e75b-929f-435c-981d-be615977f642" />*
 
-| *<img width="1919" height="1032" alt="Screenshot 2025-12-31 222245" src="https://github.com/user-attachments/assets/f1ca58e6-caa7-4cfc-96f3-603b1b635a7e" />* |
+*<img width="1919" height="1032" alt="Screenshot 2025-12-31 222245" src="https://github.com/user-attachments/assets/f1ca58e6-caa7-4cfc-96f3-603b1b635a7e" />*
 
 
 ### Contributing
