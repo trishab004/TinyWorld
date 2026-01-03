@@ -16,7 +16,7 @@ function Chat({ currentUser, selectedUser, socket, onlineUsers }) {
         const fetchMessages = async () => {
             if (!selectedUser) return;
             try {
-                const res = await axios.get(`http://localhost:5000/messages/${currentUser._id}/${selectedUser._id}`);
+                const res = await axios.get(`https://tinyworld.onrender.com/messages/${currentUser._id}/${selectedUser._id}`);
                 setMessages(res.data);
 
                 // Tell server: I am reading messages sent BY selectedUser TO me
