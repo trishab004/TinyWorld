@@ -6,8 +6,6 @@ const jwt = require('jsonwebtoken');
 // Add a secret key for your tokens (in real apps, put this in .env)
 const JWT_SECRET = process.env.JWT_SECRET;
 
-
-require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -21,13 +19,16 @@ const app = express();
 const server = http.createServer(app); // Wrap express in HTTP server
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: "*",  // ⚠️ Allow ALL connections (Easiest for deployment)
+    methods: ["GET", "POST"]
+}));
 app.use(express.json());
 
 // Socket.io Setup (The "Real-time" part)
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:5173", // Your Vite Frontend Port
+        origin: "*", // Your Vite Frontend Port
         methods: ["GET", "POST"]
     }
 });
@@ -158,11 +159,17 @@ io.on('connection', (socket) => {
     });
 
     // Handle sending messages (No change here, but keep it!)
-    socket.on('send_message', async (data) => {
+socket.on('send_message', async (data) => {
+    try {
         const newMessage = await Message.create(data);
         io.to(data.recipient).emit('receive_message', newMessage);
         io.to(data.sender).emit('receive_message', newMessage);
-    });
+    } catch (err) {
+        console.error("Error sending message:", err);
+        // Optional: emit an error event back to the sender
+        socket.emit('error', { message: "Failed to send message" });
+    }
+});
     // ... inside io.on('connection') ...
 
     // 1. Listen for typing event
