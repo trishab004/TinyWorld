@@ -5,7 +5,9 @@ import Chat from './Chat';
 import './App.css';
 
 // Initialize Socket
-const socket = io.connect("http://localhost:5000");
+// const socket = io.connect("http://localhost:5000");
+
+const socket = io.connect("https://tinyworld.onrender.com");
 
 function App() {
   const [user, setUser] = useState(null);
@@ -22,7 +24,7 @@ function App() {
     e.preventDefault();
     const endpoint = isLoginMode ? '/login' : '/register';
     try {
-      const res = await axios.post(`http://localhost:5000${endpoint}`, { username, password });
+      const res = await axios.post(`https://tinyworld.onrender.com${endpoint}`, { username, password });
       localStorage.setItem('tinyUser', JSON.stringify(res.data.user));
       localStorage.setItem('tinyToken', res.data.token);
       setUser(res.data.user);
@@ -35,10 +37,10 @@ function App() {
 
   const fetchUsersList = async (currentUserId) => {
     try {
-      const res = await axios.get('http://localhost:5000/users');
+      const res = await axios.get('https://tinyworld.onrender.com/users');
       const others = res.data.filter(u => u._id !== currentUserId);
       setUsersList(others);
-      const unreadRes = await axios.get(`http://localhost:5000/unread/${currentUserId}`);
+      const unreadRes = await axios.get(`https://tinyworld.onrender.com/unread/${currentUserId}`);
       setUnreadCounts(unreadRes.data);
     } catch (err) { console.error(err); }
   };
